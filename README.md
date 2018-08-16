@@ -45,3 +45,23 @@ change to your environment database, run:
 
 More information here if needed:
 http://flask-sqlalchemy.pocoo.org/2.3/quickstart/
+
+## To deploy to Heroku
+
+1. If not installed, make sure homebrew is installed on your Mac
+(https://brew.sh)
+
+2. Install Heroku:
+`brew install heroku/brew/heroku`
+
+3. Log into Heroku
+`heroku login`
+
+4. Add Heroku remote:
+`git remote add heroku https://git.heroku.com/ak-brochure.git`
+
+5. Push your branch to Heroku:
+`git push heroku master`
+
+6. Watch logs with:
+`heroku logs --tail`
