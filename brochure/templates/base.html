@@ -1,0 +1,45 @@
+<!doctype html>
+<!--[if lte IE 9 ]><html id ="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html id="ak-brochure" class="no-js" lang="en">
+<!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+
+    {% block title %}
+      <title>{{ meta.title }}</title>
+      <meta content="{{ meta.title }}" name="title">
+    {% endblock title %}
+
+    {% block description %}
+      <meta content="{{ meta.description }}" name="description">
+    {% endblock description %}
+
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+
+    {% block head_styles %}
+      <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/brochure-style.css') }}">
+    {% endblock %}
+
+    {% block head_scripts %}
+      <script src="{{ url_for('static', filename='js/modernizr/modernizr-2.8.3.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/jquery/jquery-3.1.1.slim.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/tether/tether.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+    {% endblock head_scripts%}
+  </head>
+  <body class="ak-brochure">
+    {% block content %}
+    {% endblock content %}
+
+    {% block body_scripts %}
+    {% endblock body_scripts %}
+
+    {% block body_extra %}
+    {% endblock body_extra %}
+  </body>
+</html>
