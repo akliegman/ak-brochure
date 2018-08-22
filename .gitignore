@@ -6,6 +6,11 @@
 virtualenv/
 
 # Python temporary files
-__pycache__
 *.pyc
 *.pyo
+__pycache__
+.DS_Store
+._.DS_Store
+.sass-cache
+.webassets-cache
+*.css.map
