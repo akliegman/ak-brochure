@@ -6,15 +6,15 @@ from flask import render_template
 
 meta_data = {
     'subject': 'Product Management',
-    'theme-color': '#000000',
-    'google-analytics': 'xxxxxxxxxx',
+    'theme_color': '#000000',
+    'ga_tracking_id': 'UA-30649284-1',
 }
 
 
 @app.route('/', methods=['GET'])
 def splash_page():
     """Generic splash page."""
-    meta_data['title'] = 'Sup'
-    meta_data['description'] = 'Hey'
+    meta_data['title'] = 'Hello World'
+    meta_data['description'] = 'It \'s me, Goobie!'
 
     return render_template('splash/index.html', theme='splash', meta=meta_data)

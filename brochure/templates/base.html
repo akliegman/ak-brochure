@@ -1,3 +1,5 @@
+{% import 'macros/meta.html' as meta_macro %}
+
 <!doctype html>
 <!--[if lte IE 9 ]><html id ="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
@@ -21,15 +23,23 @@
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
 
+    {{ meta_macro.ga_tag(meta.ga_tracking_id) }}
+
     {% block head_styles %}
-      <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/brochure-style.css') }}">
+      <link rel="stylesheet"
+            media="all"
+            href="{{ url_for('static', filename='css/brochure-style.css') }}">
     {% endblock %}
 
     {% block head_scripts %}
-      <script src="{{ url_for('static', filename='js/modernizr/modernizr-2.8.3.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/jquery/jquery-3.1.1.slim.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/tether/tether.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js') }}"></script>
+      {% assets filters="jsmin",
+                output="head_scripts.min.js",
+                'js/modernizr/modernizr-2.8.3.min.js',
+                'js/jquery/jquery-3.1.1.slim.min.js',
+                'js/tether/tether.min.js',
+                'js/bootstrap/bootstrap.min.js' %}
+        <script src="{{ ASSET_URL }}"></script>
+      {% endassets %}
     {% endblock head_scripts%}
   </head>
   <body class="ak-brochure">
