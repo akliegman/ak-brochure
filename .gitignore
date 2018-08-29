@@ -9,8 +9,8 @@ virtualenv/
 *.pyc
 *.pyo
 __pycache__
-.DS_Store
-._.DS_Store
+
+# Static temporary files
 .sass-cache
 .webassets-cache
 *.css.map

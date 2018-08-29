@@ -1,9 +1,10 @@
+gunicorn==19.7.1
 Flask==1.0.2
-psycopg2-binary==2.7.5
-Flask-SQLAlchemy===2.3.2
+Flask-Assets==0.12
+Flask-HTMLmin==1.4.0
+Flask-Mail==0.6.1
 Flask-Migrate==2.2.1
 Flask-Script==2.0.6
-Flask-HTMLmin==1.4.0
-FLask-Assets==0.12
-gunicorn==19.7.1
+Flask-SQLAlchemy==2.3.2
 jsmin==2.2.2
+psycopg2-binary==2.7.5
