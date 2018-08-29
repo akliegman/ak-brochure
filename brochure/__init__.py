@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask_assets import Environment
-from flaskext.mail import Mail
+from flask_mail import Mail
 from flask_htmlmin import HTMLMIN
 from flask_sqlalchemy import SQLAlchemy
 import sys
@@ -27,7 +27,7 @@ assets = Environment(app)
 mail = Mail(app)
 
 assets.init_app(app)
-HTMLMIN.init_app(app)
+HTMLMIN(app)
 
 
 from brochure.models.user import User

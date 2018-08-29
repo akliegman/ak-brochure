@@ -1,28 +1,27 @@
 {% import 'macros/meta.html' as meta_macro %}
 
 <!doctype html>
-<!--[if lte IE 9 ]><html id ="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
+<!--[if lte IE 9 ]><html id="noodle-programs" class="ie-old no-js {% if request.args.get('t') != 'None' %}{{ (theme ~ '-page') if theme is defined else '' }}{% else %}{{ request.args.get('t') ~ '-page' }}{% endif %}" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html id="ak-brochure" class="no-js" lang="en">
+<html id="ak-brochure" class="no-js {% if request.args.get('t') != 'None' %}{{ (theme ~ '-page') if theme is defined else '' }}{% else %}{{ request.args.get('t') ~ '-page' }}{% endif %}" lang="en">
 <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
-
-    {% block title %}
-      <title>{{ meta.title }}</title>
-      <meta content="{{ meta.title }}" name="title">
-    {% endblock title %}
-
-    {% block description %}
-      <meta content="{{ meta.description }}" name="description">
-    {% endblock description %}
-
+    <title>{{ meta.title }}</title>
+    <meta content="{{ meta.title }}" name="title">
+    {% if meta.description %}<meta content="{{ meta.description }}" name="description">{% endif %}
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
-
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="google" content="notranslate">
+    {% if meta.theme_color %}<meta name="theme-color" content="{{ meta.theme_color }}">{% endif %}
+    {% if meta.subject %}<meta name="subject" content="{{ meta.subject }}">{% endif %}
+    <meta name="rating" content="General">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="google-site-verification" content="{{ meta.google_site_verification_token }}" />
     {{ meta_macro.ga_tag(meta.ga_tracking_id) }}
 
     {% block head_styles %}

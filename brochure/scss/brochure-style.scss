@@ -1,3 +1,7 @@
 @charset 'UTF-8';
 
-@import 'bootstrap/bootstrap';
+.splash-page {
+  @import "abstracts/_splash_vars";
+  @import "bootstrap/bootstrap";
+  @import "splash/_splash";
+}
