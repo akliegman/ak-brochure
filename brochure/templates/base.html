@@ -1,9 +1,9 @@
 {% import 'macros/meta.html' as meta_macro %}
 
 <!doctype html>
-<!--[if lte IE 9 ]><html id="noodle-programs" class="ie-old no-js {% if request.args.get('t') != 'None' %}{{ (theme ~ '-page') if theme is defined else '' }}{% else %}{{ request.args.get('t') ~ '-page' }}{% endif %}" lang="en"><![endif]-->
+<!--[if lte IE 9 ]><html id="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html id="ak-brochure" class="no-js {% if request.args.get('t') != 'None' %}{{ (theme ~ '-page') if theme is defined else '' }}{% else %}{{ request.args.get('t') ~ '-page' }}{% endif %}" lang="en">
+<html id="ak-brochure" class="no-js" lang="en">
 <!--<![endif]-->
   <head>
     <meta charset="utf-8">
@@ -18,13 +18,13 @@
     <meta name="google" content="nositelinkssearchbox">
     <meta name="google" content="notranslate">
     {% if meta.theme_color %}<meta name="theme-color" content="{{ meta.theme_color }}">{% endif %}
-    {% if meta.subject %}<meta name="subject" content="{{ meta.subject }}">{% endif %}
     <meta name="rating" content="General">
     <meta name="format-detection" content="telephone=no">
     <meta name="google-site-verification" content="{{ meta.google_site_verification_token }}" />
     {{ meta_macro.ga_tag(meta.ga_tracking_id) }}
 
     {% block head_styles %}
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
       <link rel="stylesheet"
             media="all"
             href="{{ url_for('static', filename='css/brochure-style.css') }}">
@@ -35,20 +35,23 @@
                 output="head_scripts.min.js",
                 'js/modernizr/modernizr-2.8.3.min.js',
                 'js/jquery/jquery-3.1.1.slim.min.js',
-                'js/tether/tether.min.js',
                 'js/bootstrap/bootstrap.min.js' %}
         <script src="{{ ASSET_URL }}"></script>
       {% endassets %}
     {% endblock head_scripts%}
   </head>
-  <body class="ak-brochure">
-    {% block content %}
-    {% endblock content %}
+  <body class="ak-brochure {{ (theme ~ '-theme') }}">
+    <section class="content">
+      {% block content %}
+      {% endblock content %}
+    </section>
 
     {% block body_scripts %}
     {% endblock body_scripts %}
 
     {% block body_extra %}
     {% endblock body_extra %}
+
+    {% include 'components/copyright.html' %}
   </body>
 </html>

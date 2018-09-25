@@ -1,0 +1,53 @@
+@keyframes fade-in {
+  0% { opacity: 0.01; }
+  100% { opacity: 1; }
+}
+
+.content > .container {
+  display: table;
+  min-height: calc(100vh - 3em);
+  padding-top: 6em;
+  padding-bottom: 6em;
+  @include animation-name(fade-in);
+  @include animation-fill-mode(both);
+  @include animation-duration(0.75s);
+  @include animation-iteration-count(1);
+  @include animation-timing-function(ease-in-out);
+  > .row {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+#curve {
+  font-size: 33px;
+}
+
+
+.title {
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 2em;
+  letter-spacing: 0.05em;
+  color: $gray;
+}
+
+.btn {
+  margin-top: 2em;
+  + .btn {
+    margin-top: 1em;
+  }
+}
+
+.availability {
+  font-family: $font-family-sans-serif;
+  .availability-option {
+    font-family: $font-family-serif;
+    color: $green;
+    font-size: 1.2em;
+    display: inline-block;
+    vertical-align: bottom;
+    background: rgba($green, 0.1);
+    padding: 0 0.25em;
+  }
+}

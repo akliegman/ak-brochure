@@ -1,7 +1,50 @@
 @charset 'UTF-8';
 
-.splash-page {
-  @import "abstracts/_splash_vars";
-  @import "bootstrap/bootstrap";
-  @import "splash/_splash";
+@import "abstracts/site_variables";
+@import "bootstrap";
+@import "abstracts/site_typography";
+
+
+
+.ak-brochure {
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+  height: 100%;
+
+  &.splash-theme {
+    @import "pages/splash";
+  }
+
+  .content {
+    margin-bottom: 3em;
+    overflow: hidden;
+  }
+  .copyright {
+    position: absolute;
+    height: 3em;
+    bottom: 0;
+    width: 100%;
+    line-height: 3;
+    color: $gray-light;
+  }
+
+  .btn {
+    @include transition(all ease-in-out .25s);
+    position: relative;
+    i {
+      @include transition(all ease-in-out .25s);
+      @include scale(0);
+      position: absolute;
+      left: 1em;
+    }
+    &:hover {
+      @include box-shadow(0 1px 2px rgba(0,0,0,.2));
+
+      i {
+        @include scale(1);
+      }
+
+    }
+  }
 }
