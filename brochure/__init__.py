@@ -1,12 +1,13 @@
 """Init application and set up all components and packages."""
+import os
+import sys
 
 from flask import Flask
 from flask_assets import Environment
 from flask_mail import Mail
 from flask_htmlmin import HTMLMIN
 from flask_sqlalchemy import SQLAlchemy
-import sys
-import os
+from flask_sslify import SSLify
 
 
 app = Flask(__name__)
@@ -25,6 +26,7 @@ app.config['MAIL_PASSWORD'] = os.environ['GMAIL_PASSWORD']
 db = SQLAlchemy(app)
 assets = Environment(app)
 mail = Mail(app)
+sslify = SSLify(app)
 
 assets.init_app(app)
 HTMLMIN(app)
