@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-md-offset-3 text-center">
+    <div class="col-md-6 col-md-offset-3 text-center">
       <h1 class="title">Adam J. Kliegman</h1>
       <h3 class="subtitle">Dope <span class="typed"></span> Guy</h3>
       <p>
@@ -32,3 +32,9 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block body_scripts %}
+<script type="text/javascript">
+  var adjectives = {{ adjectives }};
+</script>
+{% endblock body_scripts %}

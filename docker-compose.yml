@@ -6,6 +6,8 @@ services:
     environment:
       - GMAIL_USERNAME=kliegman14@gmail.com
       - GMAIL_PASSWORD=FUCKYOUDONTLOOK
+      - CV_PASSWORD=hello
+      - GOOGLE_SITE_VERIFICATION_TOKEN=c7P0SFEg16UGqJfn8rq6CbtxT84bcPiqDswU4xSgFWA
       - DEBUG=True
       - FLASK_DEBUG=True
       - PYTHONUSERBASE=/app/virtualenv
