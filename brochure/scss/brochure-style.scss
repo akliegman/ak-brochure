@@ -17,34 +17,11 @@
   }
 
   .content {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     overflow: hidden;
   }
-  .copyright {
-    position: absolute;
-    height: 3em;
-    bottom: 0;
-    width: 100%;
-    line-height: 3;
-    color: $gray-light;
-  }
 
-  .btn {
-    @include transition(all ease-in-out .25s);
-    position: relative;
-    i {
-      @include transition(all ease-in-out .25s);
-      @include scale(0);
-      position: absolute;
-      left: 1em;
-    }
-    &:hover {
-      @include box-shadow(0 1px 2px rgba(0,0,0,.2));
 
-      i {
-        @include scale(1);
-      }
-
-    }
-  }
+  @import "abstracts/site_buttons";
+  @import "components/copyright"
 }

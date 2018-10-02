@@ -69,10 +69,11 @@ def splash_page():
     )
 
     adjectives = [
-        "Product Designer",
-        "Leader",
-        "Frontend Ninja",
-        "UX/UI Loyalist"
+        "Product Stra^200tegist.",
+        "Front^200end Developer.",
+        "UX^200/UI Designer.",
+        "Business Intelligence ^200Guru.",
+        "Startup Activat^200or.",
     ]
     return render_template('pages/splash.html', theme='splash', meta=meta, adjectives=adjectives)
 

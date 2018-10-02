@@ -4,29 +4,40 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3 text-center">
-      <h1 class="title">Adam J. Kliegman</h1>
-      <h3 class="subtitle">Dope <span class="typed"></span> Guy</h3>
+      <h1 class="title"><span>I'm</span> <span>Adam Kliegman.</span></h1>
+      <h3 class="subtitle">
+        <span class="subtitle-hard">I'm a</span>
+        <span class="typed-wrapper">
+          <span class="adjectives">
+            {% for adjective in adjectives %}
+              <span>{{ adjective }}</span>
+            {% endfor %}
+          </span>
+          <span class="typed-placeholder"></span>
+        </span>
+      </h3>
       <p>
-        Spicy jalapeno bacon ipsum dolor amet sausage pig tail brisket prosciutto
-        tenderloin venison drumstick picanha kielbasa. Venison pig fatback kevin.
-        Hamburger pork fatback turducken andouille shankle venison.
+        Here I will write two sentences on why I am unique. I will include all of my awesomeness!!
       </p>
-
-      <p class="availability">
-        I am currently <strong class="availability-option">available</strong> for freelance
-        or consulting opportunities.
-      </p>
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <a class="btn btn-block btn-default" href="/cv">
-            <i class="far fa-file-alt"></i>
-            <span>View Resume</span>
-          </a>
-          <a class="btn btn-block btn-default" href="/contact">
-            <i class="far fa-comment-alt"></i>
-            Contact
-          </a>
-        </div>
+      <div class="cta-buttons">
+        <a class="btn btn-success" href="/cv">
+          <i class="far fa-file"></i>
+          <span>R&eacute;sum&eacute;</span>
+        </a>
+        <a class="btn btn-success" href="/contact">
+          <i class="far fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+      <div class="social-buttons">
+        <a class="btn btn-primary btn-social" href="https://www.linkedin.com/in/adamkliegman/" target="_blank">
+          <span class="sr-only">LinkedIn</span>
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a class="btn btn-primary btn-social" href="https://github.com/akliegman" target="_blank">
+          <span class="sr-only">Github</span>
+          <i class="fab fa-github-alt"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -34,7 +45,13 @@
 {% endblock content %}
 
 {% block body_scripts %}
-<script type="text/javascript">
-  var adjectives = {{ adjectives }};
-</script>
+  {% assets filters="jsmin",
+            output="splash_page.min.js",
+            'js/typed/typed.min.js',
+            'js/pages/splash.js' %}
+      <script src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+  <script>
+
+  </script>
 {% endblock body_scripts %}
