@@ -1,0 +1,13 @@
+{% import 'macros/dialog.html' as dialog %}
+{% macro render_contact_form(id, modal_id) %}
+
+  {% call dialog.render_dialog('Contact', modal_id) %}
+      <form id="{{ id }}" method="POST">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control">
+        </div>
+      </form>
+  {% endcall %}
+
+{% endmacro %}

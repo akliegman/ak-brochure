@@ -18,10 +18,11 @@
             'color-purple',
             'color-green',
             'color-red',
-            'color-light-green'
+            'color-light-green',
+            'color-blue'
           ];
 
-          $(self.el).removeClass(color_map[arrayPos - 1]).addClass(color_map[arrayPos]);
+          $(self.el).removeClass().addClass(color_map[arrayPos]);
         },
       }
     },

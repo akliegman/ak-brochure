@@ -1,4 +1,5 @@
 {% import 'macros/meta.html' as meta_macro %}
+{% import 'macros/contact-form.html' as contact_form %}
 
 <!doctype html>
 <!--[if lte IE 9 ]><html id="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
@@ -49,9 +50,8 @@
     {% block body_scripts %}
     {% endblock body_scripts %}
 
-    {% block body_extra %}
-    {% endblock body_extra %}
-
     {% include 'components/copyright.html' %}
+
+    {{ contact_form.render_contact_form(contact_form_id, contact_dialog_id) }}
   </body>
 </html>

@@ -1,9 +1,11 @@
 """Site controller for all pages (for now)."""
 
 from datetime import datetime
+import json
 
 from brochure import app
 from brochure import login_manager
+from brochure import mail
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -11,6 +13,7 @@ from flask import url_for
 import flask_login
 from flask_login import current_user
 from flask_login import UserMixin
+from flask_mail import Message
 
 META_DATA = {
     'theme_color': '#2c292d',
@@ -58,6 +61,16 @@ def current_date():
     return {'date': datetime.utcnow()}
 
 
+@app.context_processor
+def universal_html_elements():
+    """HTML classes for universal elements."""
+    html_entities = {
+        'contact_form_id': 'generic-contact-form',
+        'contact_dialog_id': 'generic-contact-form-modal',
+    }
+    return html_entities
+
+
 @app.route('/', methods=['GET'])
 def splash_page():
     """Generic splash page."""
@@ -90,14 +103,19 @@ def cv_page():
     return render_template('pages/cv.html', theme='cv', meta=meta)
 
 
-@app.route('/contact', methods=['GET'])
-def contact_page():
-    """Contact form page."""
-    meta = META_DATA
-    meta['title'] = 'Contact | Adam Kliegman'
-    meta['description'] = ''
+@app.route('/ajax/contact', methods=['POST'])
+def contact_post():
+    """Contact form ajax submit."""
+    data = request.form['hello']
+    msg = Message(
+        'New Contact from AdamKliegman.com',
+        sender=app.config['MAIL_USERNAME'],
+        recipients=[app.config['AK_EMAIL']]
+    )
 
-    return render_template('pages/contact.html', theme='contact', meta=meta)
+    msg.html = render_template('email/email.html', data=data)
+    mail.send(msg)
+    return json.dumps({'status':'success', 'data':data})
 
 
 @app.route('/login', methods=['GET', 'POST'])

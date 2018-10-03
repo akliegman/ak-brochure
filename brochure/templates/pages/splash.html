@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% import 'macros/contact-form.html' as contact_form %}
+
 {% block content %}
 <div class="container">
   <div class="row">
@@ -17,17 +19,26 @@
         </span>
       </h3>
       <p>
-        Here I will write two sentences on why I am unique. I will include all of my awesomeness!!
+        I'm driven by a relentless desire to create online experiences
+        that do the right thing, and are built the right way. I combine my interest in human
+        behavior with my passion for design and development to create elegant and intuitive web
+        products and experiences. I can  work end-to-end, from idea to implementation.
+      </p>
+      <p>
+        I am currently <strong class="color-blue">available</strong> for freelance or consulting
+        opportunities.
       </p>
       <div class="cta-buttons">
+        {#}
         <a class="btn btn-success" href="/cv">
           <i class="far fa-file"></i>
           <span>R&eacute;sum&eacute;</span>
         </a>
-        <a class="btn btn-success" href="/contact">
+        {#}
+        <button class="btn btn-success" data-toggle="modal" data-target="#{{ contact_dialog_id }}">
           <i class="far fa-envelope"></i>
           <span>Contact</span>
-        </a>
+        </button>
       </div>
       <div class="social-buttons">
         <a class="btn btn-primary btn-social" href="https://www.linkedin.com/in/adamkliegman/" target="_blank">
@@ -42,6 +53,7 @@
     </div>
   </div>
 </div>
+       {{ contact_form.render_contact_form(contact_form_id, contact_dialog_id) }}
 {% endblock content %}
 
 {% block body_scripts %}
@@ -51,7 +63,16 @@
             'js/pages/splash.js' %}
       <script src="{{ ASSET_URL }}"></script>
   {% endassets %}
-  <script>
-
-  </script>
+{#   <script>
+    $('#test').click(function(){
+      $.ajax({
+        url: '/ajax/contact',
+        data: {'hello' : 'world'},
+        type: 'POST',
+        success: function(result) {
+          console.log(result);
+        }
+      })
+    })
+  </script> #}
 {% endblock body_scripts %}
