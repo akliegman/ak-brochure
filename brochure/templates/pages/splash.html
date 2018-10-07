@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% import 'macros/contact-form.html' as contact_form %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 text-center">
+      <h1 class="title"><span>I'm</span> <span>Adam Kliegman.</span></h1>
+      <h3 class="subtitle">
+        <span class="subtitle-hard">I'm a</span>
+        <span class="typed-wrapper">
+          <span class="adjectives">
+            {% for adjective in adjectives %}
+              <span>{{ adjective }}</span>
+            {% endfor %}
+          </span>
+          <span class="typed-placeholder"></span>
+        </span>
+      </h3>
+      <p>
+        I'm driven by a relentless desire to create online experiences
+        that do the right thing, and are built the right way. I combine my interest in human
+        behavior with my passion for design and development to create elegant and intuitive web
+        products and experiences. I can  work end-to-end, from idea to implementation.
+      </p>
+      <p>
+        I am currently <strong class="color-blue">available</strong> for freelance or consulting
+        opportunities.
+      </p>
+      <div class="cta-buttons">
+        {#}
+        <a class="btn btn-success" href="/cv">
+          <i class="far fa-file"></i>
+          <span>R&eacute;sum&eacute;</span>
+        </a>
+        {#}
+        <a class="btn btn-success" href="mailto:adam.j.kliegman@gmail.com" {# data-toggle="modal" data-target="#{{ elements.contact_modal_id }}" #}>
+          <i class="far fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+      <div class="social-buttons">
+        <a class="btn btn-primary btn-social" href="https://www.linkedin.com/in/adamkliegman/" target="_blank">
+          <span class="sr-only">LinkedIn</span>
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a class="btn btn-primary btn-social" href="https://github.com/akliegman" target="_blank">
+          <span class="sr-only">Github</span>
+          <i class="fab fa-github-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block body_scripts %}
+  {% assets filters="jsmin",
+            output="splash_page.min.js",
+            'js/typed/typed.min.js',
+            'js/pages/splash.js' %}
+      <script src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+{% endblock body_scripts %}

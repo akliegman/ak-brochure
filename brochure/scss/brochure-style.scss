@@ -1,7 +1,30 @@
 @charset 'UTF-8';
 
-.splash-page {
-  @import "abstracts/_splash_vars";
-  @import "bootstrap/bootstrap";
-  @import "splash/_splash";
+@import "abstracts/site_variables";
+@import "bootstrap";
+@import "abstracts/site_helpers";
+@import "abstracts/site_typography";
+
+
+
+.ak-brochure {
+  height: 100%;
+  min-height: 100%;
+  min-height: 100vh;
+  position: relative;
+
+  &.splash-theme {
+    @import "pages/splash";
+  }
+
+  .content {
+    margin-bottom: 2em;
+    overflow: hidden;
+  }
+
+
+  @import "abstracts/site_buttons";
+  @import "abstracts/site_forms";
+  @import "abstracts/site_modals";
+  @import "components/copyright"
 }

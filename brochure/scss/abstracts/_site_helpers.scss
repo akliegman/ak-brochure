@@ -1,0 +1,18 @@
+$colors-list: (
+  'white':        $white,
+  'black':        $black,
+  'red':          $red,
+  'purple':       $purple,
+  'blue':         $blue,
+  'light-green':  $light-green,
+  'green':        $green
+);
+
+@each $name, $color in $colors-list {
+  .bg-color-#{$name} {
+    background-color: $color;
+  }
+  .color-#{$name} {
+    color: $color;
+  }
+}
