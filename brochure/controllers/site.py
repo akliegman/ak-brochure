@@ -98,56 +98,56 @@ def splash_page():
     return render_template('pages/splash.html', theme='splash', meta=meta, adjectives=adjectives)
 
 
-@app.route('/cv', methods=['GET'])
-@app.route('/resume', methods=['GET'])
-@flask_login.login_required
-def cv_page():
-    """Resume page."""
-    meta = META_DATA
-    meta['title'] = 'Resume | Adam Kliegman'
-    meta['description'] = ''
+# @app.route('/cv', methods=['GET'])
+# @app.route('/resume', methods=['GET'])
+# @flask_login.login_required
+# def cv_page():
+#     """Resume page."""
+#     meta = META_DATA
+#     meta['title'] = 'Resume | Adam Kliegman'
+#     meta['description'] = ''
 
-    return render_template('pages/cv.html', theme='cv', meta=meta)
-
-
-@app.route('/ajax/contact', methods=['POST'])
-def contact_post():
-    """Contact form ajax submit."""
-    data = request.form.to_dict()
-
-    msg = Message(
-        'New Contact from AdamKliegman.com',
-        sender=app.config['MAIL_USERNAME'],
-        recipients=[app.config['AK_EMAIL']]
-    )
-
-    msg.html = render_template('email/email.html', data=data)
-    mail.send(msg)
-
-    return json.dumps({'status': 'success'})
+#     return render_template('pages/cv.html', theme='cv', meta=meta)
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login_page():
-    """Login page. Posts password which checks against envar."""
-    meta = META_DATA
-    meta['title'] = 'Log In | Adam Kliegman'
+# @app.route('/ajax/contact', methods=['POST'])
+# def contact_post():
+#     """Contact form ajax submit."""
+#     data = request.form.to_dict()
 
-    if current_user.is_authenticated:
-        return redirect(url_for('cv_page'))
+#     msg = Message(
+#         'New Contact from AdamKliegman.com',
+#         sender=app.config['MAIL_USERNAME'],
+#         recipients=[app.config['AK_EMAIL']]
+#     )
 
-    if request.method == 'POST':
-        username = 'user'
-        if request.form.get('password') == app.config['CV_PASSWORD']:
-            user = User()
-            user.id = username
-            flask_login.login_user(user)
-            return redirect(url_for('cv_page'))
-    return render_template('pages/login.html', theme='login', meta=meta)
+#     msg.html = render_template('email/email.html', data=data)
+#     mail.send(msg)
+
+#     return json.dumps({'status': 'success'})
 
 
-@app.route('/logout')
-def logout():
-    """Logout function and redirect. Probably won't be used."""
-    flask_login.logout_user()
-    return redirect(url_for('splash_page'))
+# @app.route('/login', methods=['GET', 'POST'])
+# def login_page():
+#     """Login page. Posts password which checks against envar."""
+#     meta = META_DATA
+#     meta['title'] = 'Log In | Adam Kliegman'
+
+#     if current_user.is_authenticated:
+#         return redirect(url_for('cv_page'))
+
+#     if request.method == 'POST':
+#         username = 'user'
+#         if request.form.get('password') == app.config['CV_PASSWORD']:
+#             user = User()
+#             user.id = username
+#             flask_login.login_user(user)
+#             return redirect(url_for('cv_page'))
+#     return render_template('pages/login.html', theme='login', meta=meta)
+
+
+# @app.route('/logout')
+# def logout():
+#     """Logout function and redirect. Probably won't be used."""
+#     flask_login.logout_user()
+#     return redirect(url_for('splash_page'))
