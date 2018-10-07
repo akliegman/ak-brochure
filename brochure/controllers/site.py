@@ -19,6 +19,7 @@ META_DATA = {
     'theme_color': '#2c292d',
     'ga_tracking_id': 'UA-30649284-1',
     'google_site_verification_token': app.config['GOOGLE_SITE_VERIFICATION_TOKEN'],
+    'recaptcha_site_key': app.config['RECAPTCHA_SITE_KEY'],
 }
 
 
@@ -62,13 +63,19 @@ def current_date():
 
 
 @app.context_processor
+def get_debug():
+    """Make date accessible on any template. Used primarily for copyright (lol)."""
+    return {'debug': app.config['DEBUG']}
+
+
+@app.context_processor
 def universal_html_elements():
     """HTML classes for universal elements."""
     html_entities = {
         'contact_form_id': 'generic-contact-form',
-        'contact_dialog_id': 'generic-contact-form-modal',
+        'contact_modal_id': 'generic-contact-form-modal',
     }
-    return html_entities
+    return { 'elements': html_entities }
 
 
 @app.route('/', methods=['GET'])
@@ -106,7 +113,8 @@ def cv_page():
 @app.route('/ajax/contact', methods=['POST'])
 def contact_post():
     """Contact form ajax submit."""
-    data = request.form['hello']
+    data = request.form.to_dict()
+
     msg = Message(
         'New Contact from AdamKliegman.com',
         sender=app.config['MAIL_USERNAME'],
@@ -115,7 +123,8 @@ def contact_post():
 
     msg.html = render_template('email/email.html', data=data)
     mail.send(msg)
-    return json.dumps({'status':'success', 'data':data})
+
+    return json.dumps({'status': 'success'})
 
 
 @app.route('/login', methods=['GET', 'POST'])

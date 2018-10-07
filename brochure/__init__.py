@@ -14,6 +14,8 @@ from flask_sslify import SSLify
 app = Flask(__name__)
 
 app.config.from_object('brochure.config.Config')
+app.config['DEBUG'] = os.environ['DEBUG'] == 'True'
+
 app.secret_key = os.environ['CV_PASSWORD']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MINIFY_PAGE'] = True
@@ -26,7 +28,8 @@ app.config['MAIL_PASSWORD'] = os.environ['GMAIL_PASSWORD']
 app.config['AK_EMAIL'] = os.environ['AK_EMAIL']
 app.config['CV_PASSWORD'] = os.environ['CV_PASSWORD']
 app.config['GOOGLE_SITE_VERIFICATION_TOKEN'] = os.environ['GOOGLE_SITE_VERIFICATION_TOKEN']
-
+app.config['RECAPTCHA_SITE_KEY'] = os.environ['RECAPTCHA_SITE_KEY']
+app.config['RECAPTCHA_SECRET_KEY'] = os.environ['RECAPTCHA_SECRET_KEY']
 db = SQLAlchemy(app)
 assets = Environment(app)
 mail = Mail(app)
@@ -42,3 +45,4 @@ from brochure.models.user import Users
 sys.path.append('brochure')
 
 from brochure.controllers import *
+

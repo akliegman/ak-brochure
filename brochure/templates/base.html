@@ -26,17 +26,20 @@
 
     {% block head_styles %}
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-      <link rel="stylesheet"
-            media="all"
-            href="{{ url_for('static', filename='css/brochure-style.css') }}">
+      <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/brochure-style.css') }}">
     {% endblock %}
 
     {% block head_scripts %}
+      <script src="https://www.google.com/recaptcha/api.js"></script>
+      <script>var html_entities = {{ elements|safe }};</script>
       {% assets filters="jsmin",
                 output="head_scripts.min.js",
                 'js/modernizr/modernizr-2.8.3.min.js',
                 'js/jquery/jquery-3.1.1.min.js',
-                'js/bootstrap/bootstrap.min.js' %}
+                'js/bootstrap/bootstrap.min.js',
+                'js/jquery/jquery.validate.js',
+                'js/base/recaptcha.js',
+                'js/base/contact-form.js' %}
         <script src="{{ ASSET_URL }}"></script>
       {% endassets %}
     {% endblock head_scripts%}
@@ -46,12 +49,82 @@
       {% block content %}
       {% endblock content %}
     </section>
+    {% include 'components/copyright.html' %}
+
+    {{ contact_form.render_contact_form(id=elements.contact_form_id,
+                                    modal_id=elements.contact_modal_id,
+                                    recaptcha_site_key=meta.recaptcha_site_key,
+                                    debug=debug) }}
 
     {% block body_scripts %}
     {% endblock body_scripts %}
 
-    {% include 'components/copyright.html' %}
+     <script>
 
-    {{ contact_form.render_contact_form(contact_form_id, contact_dialog_id) }}
+      $contact_form.validate({
+
+        },
+        errorElement: "em",
+        errorPlacement: function ( error, element ) {
+          // Add the `help-block` class to the error element
+          error.addClass( "help-block" );
+
+          // Add `has-feedback` class to the parent div.form-group
+          // in order to add icons to inputs
+          element.parents( ".col-sm-5" ).addClass( "has-feedback" );
+
+          if ( element.prop( "type" ) === "checkbox" ) {
+            error.insertAfter( element.parent( "label" ) );
+          } else {
+            error.insertAfter( element );
+          }
+
+          // Add the span element, if doesn't exists, and apply the icon classes to it.
+          if ( !element.next( "span" )[ 0 ] ) {
+            $( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
+          }
+        },
+        success: function ( label, element ) {
+          // Add the span element, if doesn't exists, and apply the icon classes to it.
+          if ( !$( element ).next( "span" )[ 0 ] ) {
+            $( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+          }
+        },
+        highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+          $( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+        },
+        unhighlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+          $( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+        },
+
+        submitHandler: function(form) {
+          var $form = $(form),
+              $submit_btn = $form.find('button[type=submit]'),
+              form_data = $form.serialize();
+
+          $submit_btn.attr('disabled', true);
+          $.ajax({
+            url: '/ajax/contact',
+            data: form_data,
+            type: 'POST',
+            success: function(result) {
+              console.log(result);
+              $submit_btn.removeAttr('disabled');
+              $contact_modal.modal('hide');
+            },
+            error: function() {
+              $submit_btn.removeAttr('disabled');
+            }
+          })
+        }
+      })
+
+
+      $contact_btn.on('click', function(e) { e.preventDefault(); });
+
+
+    </script>
   </body>
 </html>

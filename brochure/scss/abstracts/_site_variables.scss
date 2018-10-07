@@ -42,6 +42,10 @@ $border-radius-base:    2px;
 $border-radius-large:   10px;
 $border-radius-small:   0px;
 
+$input-bg: rgba($white, 0.05);
+$input-color: $white;
+$input-border: $white;
+$input-color-placeholder: rgba($white, 0.1);
 $input-height-base: ($line-height-computed + ($padding-small-vertical * 2) + 2);
 $input-border-radius: $border-radius-small;
 
@@ -51,4 +55,5 @@ $modal-lg: 100%;
 $modal-md: 100%;
 $modal-sm: 100%;
 
-$modal-content-bg: $purple;
+$modal-content-bg: $black;
+$modal-content-border-color: $modal-content-bg;

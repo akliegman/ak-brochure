@@ -9,10 +9,10 @@ $colors-list: (
 );
 
 @each $name, $color in $colors-list {
-  .color-#{$name} {
-    color: $color;
-  }
   .bg-color-#{$name} {
     background-color: $color;
+  }
+  .color-#{$name} {
+    color: $color;
   }
 }

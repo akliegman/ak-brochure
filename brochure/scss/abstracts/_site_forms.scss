@@ -1,3 +1,9 @@
 .form-control {
   padding: $padding-small-vertical $padding-small-horizontal;
+  border: 0;
+  border-bottom: 5px solid $white;
+}
+
+input.form-control {
+
 }
