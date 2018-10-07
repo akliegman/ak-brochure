@@ -5,7 +5,6 @@ services:
     build: .
     environment:
       - GMAIL_USERNAME=adam.j.kliegman@gmail.com
-      - GMAIL_PASSWORD=WTFBRO123
       - CV_PASSWORD=hello
       - AK_EMAIL=kliegman14@gmail.com
       - GOOGLE_SITE_VERIFICATION_TOKEN=c7P0SFEg16UGqJfn8rq6CbtxT84bcPiqDswU4xSgFWA
