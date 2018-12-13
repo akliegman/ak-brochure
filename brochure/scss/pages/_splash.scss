@@ -1,44 +1,15 @@
-@-webkit-keyframes fade-in {
-  0%    { opacity: 0.01; }
-  100%  { opacity: 1; }
-}
-
-@keyframes fade-in {
-  0%    { opacity: 0.01; }
-  100%  { opacity: 1; }
-}
-
-@-webkit-keyframes slide-down {
-  0%    { transform: translateY(-100%); }
-  50%   { transform: translateY(4%); }
-  65%   { transform: translateY(-2%); }
-  80%   { transform: translateY(2%); }
-  95%   { transform: translateY(-1%); }
-  100%  { transform: translateY(0%); }
-}
-
-@keyframes slide-down {
-  0%    { transform: translateY(-100%); }
-  50%   { transform: translateY(4%); }
-  65%   { transform: translateY(-2%); }
-  80%   { transform: translateY(2%); }
-  95%   { transform: translateY(-1%); }
-  100%  { transform: translateY(0%); }
-}
-
-
 
 .content > .container {
   min-height: calc(100vh - 2em);
-  padding-top: 6em;
-  padding-bottom: 6em;
+  padding-top: $body-padding;
+  padding-bottom: $body-padding;
   @include animation-name(fade-in);
   @include animation-fill-mode(both);
   @include animation-duration(0.75s);
   @include animation-iteration-count(1);
   @include animation-timing-function(ease-in-out);
   > .row {
-    @include animation-name(slide-down);
+    @include animation-name(bounce-down);
     @include animation-fill-mode(both);
     @include animation-duration(1.25s);
     @include animation-iteration-count(1);
@@ -46,15 +17,32 @@
   }
 }
 
-.logo {
-  display: block;
-  margin-bottom: 2em;
+.splash-page-wrapper {
+  max-width: 36em;
+  margin: 0 auto;
+}
+
+.pretitle {
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  font-size: 1.8em;
+  color: $black;
+  &:before, &:after {
+    content: '';
+    height: 1px;
+    background: rgba($black, 0.2);
+    width: 2em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5em;
+  }
 }
 .title {
-  text-transform: uppercase;
+  font-size: 4.25em;
+  color: $black;
   font-weight: 900;
-  font-size: 2.75em;
-  color: $blue;
+  letter-spacing: 0.01em;
+  text-transform: none;
   span {
     display: inline-block;
   }
@@ -62,20 +50,25 @@
 
 .subtitle {
   padding: 0 0 1em 0;
-  font-weight: 400;
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  font-size: 1.8em;
+  color: $black;
 
   .typed-wrapper {
-    font-weight: 900;
+    font-weight: 600;
+    color: $red;
   }
+
   .typed-cursor {
-    color: rgba($black, 0.5);
-    font-weight: 300;
+    color: rgba($black, 0.4);
+    font-weight: 100;
     vertical-align: text-top;
   }
 }
 
 .cta-buttons .btn {
   margin: 2em 0.25em;
-  width: 12em;
+  width: 13em;
 }
 

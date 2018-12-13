@@ -6,32 +6,34 @@
     {% if not debug %}
       <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}" data-callback="recaptcha_callback"></div>
     {% endif %}
-      <form id="{{ id }}" method="POST" class="{% if not debug %}hidden{% endif %}">
-        <div class="form-group">
-          <label class="control-label" for="contact_name">Name:</label>
-          <input type="text" class="form-control" name="contact_name" id="contact_name" {% if debug %}value="Adam Kliegman"{% endif %} required>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="contact_email">Email:</label>
-          <input type="email" class="form-control" name="contact_email" id="contact_email" {% if debug %}value="kliegman14@gmail.com"{% endif %} required>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="contact_form">Phone (optional):</label>
-          <input type="tel" class="form-control" name="contact_phone" id="contact_phone" {% if debug %}value="5164572014"{% endif %}>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="contact_reason">Reason for contacting:</label>
-          <select class="form-control" name="contact_reason" id="contact_reason" required>
-            <option>--Select--</option>
-            <option value="hi" {% if debug %}selected{% endif %}>Just saying hi!</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="contact_message">Message</label>
-          <textarea class="form-control" rows="3" name="contact_message" id="contact_message">{% if debug %}Hey there, bud.{% endif %}</textarea>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+
+    <form id="{{ id }}" method="POST" class="contact-form {% if debug%}blown-up{% endif %}">
+      <div class="form-group">
+        <label class="control-label" for="contact_name">Name:</label>
+        <input type="text" class="form-control" name="contact_name" id="contact_name" {% if debug %}value="Adam Kliegman"{% endif %} required>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="contact_email">Email:</label>
+        <input type="email" class="form-control" name="contact_email" id="contact_email" {% if debug %}value="kliegman14@gmail.com"{% endif %} required>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="contact_form">Phone (optional):</label>
+        <input type="tel" class="form-control" name="contact_phone" id="contact_phone" {% if debug %}value="5164572014"{% endif %}>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="contact_reason">Reason for contacting:</label>
+        <select class="form-control" name="contact_reason" id="contact_reason" required>
+          <option value="hi" {% if debug %}selected{% endif %}>Just saying hi!</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="contact_message">Message</label>
+        <textarea class="form-control" rows="3" name="contact_message" id="contact_message">
+          {%- if debug %}Hey there, bud.{% endif -%}
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-success"><i class="far fa-user"></i>Submit</button>
+    </form>
   {% endcall %}
 
 {% endmacro %}

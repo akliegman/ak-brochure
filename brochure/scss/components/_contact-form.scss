@@ -1,0 +1,13 @@
+.contact-form {
+  opacity: 0;
+  @include scale(.75);
+  @include transition(all ease-in-out .75s);
+  pointer-events: none;
+
+
+  &.blown-up {
+    @include scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

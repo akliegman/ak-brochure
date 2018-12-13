@@ -1,6 +1,6 @@
 function recaptcha_callback() {
   var $recaptcha_elem = $('.g-recaptcha'),
-      $sister_form = $recaptcha_elem.next('form');
-  $sister_form .removeClass('hidden');
-  $recaptcha_elem.addClass('hidden');
+      $sister_form = $('.contact-form');
+  $sister_form .addClass('blown-up');
+  $recaptcha_elem.addClass('shrunk');
 }

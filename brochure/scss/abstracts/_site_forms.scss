@@ -1,9 +1,44 @@
 .form-control {
-  padding: $padding-small-vertical $padding-small-horizontal;
+  padding: $padding-base-vertical $padding-small-horizontal $padding-base-vertical 2px;
   border: 0;
-  border-bottom: 5px solid $white;
+  border-radius: 0;
+  border-bottom: 2px solid rgba($white, 0.5);
+  @include transition(all ease-in-out .25s);
+  @include box-shadow(none);
+  margin-bottom: $padding-base-vertical;
+  &:focus, &:active {
+    outline: 0;
+    @include box-shadow(none!important);
+    border-color: $light-green;
+    background-color: rgba($black, 0.1);
+  }
 }
 
-input.form-control {
+select.form-control {
+  -webkit-appearance: none;
+  position: relative;
+  border-radius: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path fill="none" stroke="#fff" stroke-miterlimit="10" d="M1 3l4 4 4-4"/></svg>');
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 2;
 
+}
+
+textarea.form-control {
+  border: 2px solid rgba($white, 0.5);
+  padding-left: $padding-small-horizontal;
+}
+
+button[type=submit].btn {
+  width: 100%;
+  margin-top: $padding-base-vertical;
+
+}
+
+.has-error .form-control {
+  border-color: $red;
 }

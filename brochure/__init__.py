@@ -18,8 +18,8 @@ app.config['DEBUG'] = os.environ['DEBUG'] == 'True'
 
 app.secret_key = os.environ['CV_PASSWORD']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MINIFY_PAGE'] = True
-app.config['ASSETS_DEBUG'] = False
+app.config['MINIFY_PAGE'] = os.environ['DEBUG'] != 'True'
+app.config['ASSETS_DEBUG'] = os.environ['DEBUG'] == 'True'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = '465'
 app.config['MAIL_USE_SSL'] = True

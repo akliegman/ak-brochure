@@ -21,8 +21,9 @@
     {% if meta.theme_color %}<meta name="theme-color" content="{{ meta.theme_color }}">{% endif %}
     <meta name="rating" content="General">
     <meta name="format-detection" content="telephone=no">
-    <meta name="google-site-verification" content="{{ meta.google_site_verification_token }}" />
-    {{ meta_macro.ga_tag(meta.ga_tracking_id) }}
+    <link rel="icon" sizes="192x192" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <meta name="google-site-verification" content="{{ meta.google_site_verification_token }}">
+    {% if not debug %}{{ meta_macro.ga_tag(meta.ga_tracking_id) }}{% endif %}
 
     {% block head_styles %}
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -31,22 +32,27 @@
 
     {% block head_scripts %}
       <script src="https://www.google.com/recaptcha/api.js"></script>
-      <script>var html_entities = {{ elements|safe }};</script>
+      <script>var elements = {{ elements|safe }};</script>
       {% assets filters="jsmin",
                 output="head_scripts.min.js",
                 'js/modernizr/modernizr-2.8.3.min.js',
                 'js/jquery/jquery-3.1.1.min.js',
-                'js/bootstrap/bootstrap.min.js' %}
+                'js/bootstrap/bootstrap.min.js',
+                'js/jquery/jquery.validate.js',
+                'js/base/recaptcha.js',
+                'js/base/contact-form.js' %}
         <script src="{{ ASSET_URL }}"></script>
       {% endassets %}
     {% endblock head_scripts%}
   </head>
   <body class="ak-brochure {{ (theme ~ '-theme') }}">
-    <section class="content">
-      {% block content %}
-      {% endblock content %}
-    </section>
-    {% include 'components/copyright.html' %}
+    <main class="main">
+      <section class="content">
+        {% block content %}
+        {% endblock content %}
+      </section>
+      {% include 'components/copyright.html' %}
+    </main>
 
     {{ contact_form.render_contact_form(id=elements.contact_form_id,
                                     modal_id=elements.contact_modal_id,

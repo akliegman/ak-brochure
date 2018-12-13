@@ -1,6 +1,7 @@
 .btn, .btn:focus, .btn:active, .btn:hover {
   outline: none;
 }
+
 .btn-transparent {
   @include button-variant($blue, transparent, $blue);
 
@@ -12,9 +13,19 @@
   }
 }
 
+.btn-transparent-white {
+  @include button-variant($white, transparent, $white);
+  @include box-shadow(none!important);
+
+  &:hover {
+    @include button-variant($white, rgba($green-light, 0.075), $white)
+  }
+}
+
 .btn:not(.btn-social) {
   @include transition(all ease-in-out .25s);
   position: relative;
+  font-family: $font-family-sans-serif;
   i {
     @include transition(all ease-in-out .25s);
     @include scale(0);
@@ -34,6 +45,7 @@
   border-radius: 16px;
   height: 32px;
   line-height: 1;
+  font-size: 12px;
   padding: 0;
   width: 32px;
   i {

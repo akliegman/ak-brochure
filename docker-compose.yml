@@ -3,19 +3,8 @@ version: '3'
 services:
   app:
     build: .
-    environment:
-      - GMAIL_USERNAME=adam.j.kliegman@gmail.com
-      - CV_PASSWORD=hello
-      - AK_EMAIL=kliegman14@gmail.com
-      - GOOGLE_SITE_VERIFICATION_TOKEN=c7P0SFEg16UGqJfn8rq6CbtxT84bcPiqDswU4xSgFWA
-      - RECAPTCHA_SECRET_KEY=6LdujHMUAAAAAJ3Rh4_FHvRJZb_ImfjnVSz8WQt7
-      - RECAPTCHA_SITE_KEY=6LdujHMUAAAAACCRsuhQ9mzjLCS3DRR_EjHqmojY
-      - DEBUG=True
-      - FLASK_DEBUG=True
-      - PYTHONUSERBASE=/app/virtualenv
-      - POSTGRES_USER=app_user
-      - POSTGRES_PASS=apppass
-      - POSTGRES_DB=app
+    env_file:
+      - local.env
     command: python run.py runserver -d
     working_dir: /app
     volumes:

@@ -5,24 +5,16 @@
     configs: {
       element: '.typed-placeholder',
       options: {
-        typeSpeed: 100,
+        typeSpeed: 50,
         backDelay: 2000,
-        backSpeed: 40,
-        startDelay: 2000,
+        backSpeed: 70,
+        startDelay: 1200,
         loop: true,
         loopCount: Infinity,
         contentType: 'html',
         stringsElement: '.adjectives',
         preStringTyped: function(arrayPos, self) {
-          var color_map = [
-            'color-purple',
-            'color-green',
-            'color-red',
-            'color-light-green',
-            'color-blue'
-          ];
 
-          $(self.el).removeClass().addClass(color_map[arrayPos]);
         },
       }
     },

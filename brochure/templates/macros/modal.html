@@ -1,6 +1,6 @@
 {% macro render_modal(title, id) %}
 <div class="modal" id="{{ id }}" tabindex="-1" role="modal" aria-hidden="true">
-  <div class="modal-modal" role="document">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title">{{ title }}</h1>
@@ -11,7 +11,7 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
-            <div class="col-xs-6 col-xs-offset-3">
+            <div class="col-xs-12">
               {{ caller() }}
             </div>
           </div>

@@ -1,9 +1,4 @@
-$contact_form = $('#' + contact_form_id),
-$contact_btn = $contact_form.find('button[type=submit]'),
-$contact_modal = $('#' + contact_modal_id);
-
 (function() {
-  'use strict';
 
   var contact_form = {
     configs: {
@@ -18,9 +13,6 @@ $contact_modal = $('#' + contact_modal_id);
         contact_email: {
           required: true,
           email: true
-        },
-        contact_phone: {
-          phoneUS: true
         },
         contact_reason: {
           required: true
@@ -55,16 +47,63 @@ $contact_modal = $('#' + contact_modal_id);
     },
     init: function() {
       this.cache_dom();
-      this.prevent_default_action(this.$contact_form_submit_btn);
+      this.validate_and_submit_form();
     },
     cache_dom: function() {
       this.$contact_form = $(this.configs.form_element);
       this.$modal_element = $(this.configs.modal_element);
       this.$contact_form_submit_btn = this.$contact_form.find('button[type=submit]');
     },
-    prevent_default_action: function($btn) {
-      $btn.on('click', function(e) { e.preventDefault(); });
+    validate_and_submit_form: function() {
+
+      this.$contact_form.validate({
+        rules: this.configs.validation_rules,
+        errorElement: "em",
+        errorPlacement: function(error, element) {
+          error.addClass('help-block');
+          element.closest('.form-group').addClass('has-feedback');
+
+          if (element.attr('type') == 'checkbox' ) {
+            error.insertAfter(element.parent('label'));
+          } else {
+            error.insertAfter(element);
+          }
+
+        },
+        success: function ( label, element ) {
+        },
+        highlight: function ( element, errorClass, validClass ) {
+          $(element).closest( ".form-group" ).addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+        },
+        submitHandler: function(form) {
+          var $form = $(form),
+              $submit_btn = $form.find('button[type=submit]'),
+              form_data = $form.serialize();
+
+          $submit_btn.attr('disabled', true);
+          $.ajax({
+            url: '/ajax/contact',
+            data: form_data,
+            type: 'POST',
+            success: function(result) {
+              console.log(result);
+              $submit_btn.removeAttr('disabled');
+            },
+            error: function() {
+              $submit_btn.removeAttr('disabled');
+            }
+          })
+        }
+      });
+
     }
-  }
+  };
+
+  $(document).ready(function() {
+    contact_form.init();
+  });
 
 })();
