@@ -65,7 +65,7 @@ def current_date():
 @app.context_processor
 def get_debug():
     """Make date accessible on any template. Used primarily for copyright (lol)."""
-    return {'debug': app.config['DEBUG']}
+    return {'debug': False}
 
 
 @app.context_processor
@@ -95,7 +95,8 @@ def splash_page():
         "Business Intelligence Guru.",
         "Startup Activator.",
     ]
-    return render_template('pages/splash.html', theme='splash', meta=meta, adjectives=adjectives)
+    return render_template('pages/splash.html', theme='splash', meta=meta,
+                           adjectives=adjectives)
 
 
 @app.route('/cv', methods=['GET'])

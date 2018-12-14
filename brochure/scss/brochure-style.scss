@@ -18,7 +18,20 @@
     @import "pages/splash";
     @include gradient-directional($white, rgba(#EFF7FA, 0.3), 45deg);
   }
-
+  &.modal-open .main {
+    @include animation-name(slide-out-up);
+    @include animation-fill-mode(both);
+    @include animation-duration(0.5s);
+    @include animation-iteration-count(1);
+    @include animation-timing-function(ease-in-out);
+  }
+  &.modal-closed .main {
+    @include animation-name(slide-out-down);
+    @include animation-fill-mode(both);
+    @include animation-duration(0.5s);
+    @include animation-iteration-count(1);
+    @include animation-timing-function(ease-in-out);
+  }
   .content {
     margin-bottom: 2em;
     overflow: hidden;
@@ -32,11 +45,4 @@
   @import "components/contact-form";
 
 
-  &.modal-open .main {
-    @include animation-name(slide-out-up);
-    @include animation-fill-mode(both);
-    @include animation-duration(0.5s);
-    @include animation-iteration-count(1);
-    @include animation-timing-function(ease-in-out);
-  }
 }
