@@ -35,38 +35,4 @@
     }
   }
 
-  var typed_widget = {
-    configs: {
-      element: '.typed-placeholder',
-      options: {
-        typeSpeed: 50,
-        backDelay: 2000,
-        backSpeed: 70,
-        startDelay: 1200,
-        loop: true,
-        loopCount: Infinity,
-        contentType: 'html',
-        stringsElement: '.adjectives'
-      }
-    },
-    init: function() {
-      var typed = new Typed(this.configs.element, this.configs.options)
-    }
-  }
-
-  $(document).ready(function() {
-    typed_widget.init();
-    ga_events.init();
-  });
-
-  $('[role="modal"]').on('hide.bs.modal', function () {
-    $(this).addClass('out');
-    $('body').addClass('modal-closed');
-  });
-  $('[role="modal"]').on('show.bs.modal', function () {
-    $(this).removeClass('out');
-    $('body').removeClass('modal-closed');
-
-  });
-
 })();

@@ -1,17 +1,12 @@
 $white:        #ffffff;
-$black:        #1f1f21;
-$red:          #E44145;
-$green:        #4AA3A5;
-$light-green:  $green;
-$green-light:  $light-green;
-$blue:         #364F60;
-$purple:       $blue;
+$black:        #111111;
+$red:          #D03C3C;
+$blue:         #365060;
+$gray:         #DCE0E2;
+$box-shadow:   0 1px 2px rgba(0,0,0, 0.075);
 
 
 $brand-primary:   $blue;
-$brand-success:   $green;
-$brand-info:      $purple;
-$brand-warning:   $light-green;
 $brand-danger:    $red;
 
 $gray-base:     $black;
@@ -20,10 +15,11 @@ $body-bg: $white;
 
 $link-color: $blue;
 
-$font-family-sans-serif:  'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$font-family-serif:       'PT Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-sans-serif:  'Oswald', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-serif:       'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-size-base:          16px;
+$font-size-large:         24px;
 $font-family-base:        $font-family-serif;
 
 $padding-base-vertical:     floor(($font-size-base * 1.33333333));
@@ -32,17 +28,22 @@ $padding-base-horizontal:   floor(($font-size-base * 1.33333333));
 $padding-small-vertical:    floor(($font-size-base * 0.66666667));
 $padding-small-horizontal:  floor(($font-size-base * 0.66666667));
 
-$body-padding:            4em;
+$padding-large-vertical:    24px;
+$padding-large-horizontal:  52px;
 
-$line-height-base:        1;
+$line-height-base:        1.5;
 $line-height-large:       1.5;
 $line-height-small:       2;
 $line-height-computed:    floor(($font-size-base * $line-height-base));
 
-$btn-font-weight: 600;
+$btn-font-weight: 500;
 
-$border-radius-base:    2px;
-$border-radius-large:   10px;
+$btn-default-color:     $red;
+$btn-default-bg:        transparent;
+$btn-default-border:    $red;
+
+$border-radius-base:    0px;
+$border-radius-large:   0px;
 $border-radius-small:   0px;
 
 $input-bg:                  rgba($white, 0.00);
@@ -52,7 +53,7 @@ $input-color-placeholder:   rgba($white, 0.1);
 $input-height-base:         ($line-height-computed + ($padding-small-vertical * 2) + 2);
 $input-border-radius:       $border-radius-small;
 
-$form-group-margin-bottom: floor(($font-size-base * 1.5));
+$form-group-margin-bottom:    floor(($font-size-base * 1.5));
 
 $modal-lg: 100%;
 $modal-md: 100%;
@@ -60,3 +61,8 @@ $modal-sm: 100%;
 
 $modal-content-bg:              $blue;
 $modal-content-border-color:    $modal-content-bg;
+
+$grid-gutter-width: 80px;
+
+$container-large-desktop:   1440px;
+$container-lg:              $container-large-desktop;

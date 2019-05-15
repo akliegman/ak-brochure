@@ -9,7 +9,7 @@
   &:focus, &:active {
     outline: 0;
     @include box-shadow(none!important);
-    border-color: $light-green;
+    border-color: $blue;
     background-color: rgba($black, 0.1);
   }
 }
@@ -18,7 +18,7 @@ select.form-control {
   -webkit-appearance: none;
   position: relative;
   border-radius: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path fill="none" stroke="#fff" stroke-miterlimit="10" d="M1 3l4 4 4-4"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path fill="none" stroke="%23dedede" stroke-miterlimit="10" d="M1 3l4 4 4-4"/></svg>');
   background-position: 98% center;
   background-repeat: no-repeat;
   background-size: 10px;

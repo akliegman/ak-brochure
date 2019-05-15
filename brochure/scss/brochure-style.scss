@@ -7,42 +7,13 @@
 @import "abstracts/site_helpers";
 @import "abstracts/site_typography";
 @import "abstracts/site_scaffolding";
+@import "abstracts/site_buttons";
+@import "abstracts/site_forms";
+@import "abstracts/site_modals";
 
 .ak-brochure {
-  height: 100%;
-  min-height: 100%;
-  min-height: 100vh;
-  position: relative;
+  header { @import "components/header"; }
+  main { @import "components/main"; }
 
-  &.splash-theme {
-    @import "pages/splash";
-    @include gradient-directional($white, rgba(#EFF7FA, 0.3), 45deg);
-  }
-  &.modal-open .main {
-    @include animation-name(slide-out-up);
-    @include animation-fill-mode(both);
-    @include animation-duration(0.5s);
-    @include animation-iteration-count(1);
-    @include animation-timing-function(ease-in-out);
-  }
-  &.modal-closed .main {
-    @include animation-name(slide-out-down);
-    @include animation-fill-mode(both);
-    @include animation-duration(0.5s);
-    @include animation-iteration-count(1);
-    @include animation-timing-function(ease-in-out);
-  }
-  .content {
-    margin-bottom: 2em;
-    overflow: hidden;
-  }
-
-  @import "abstracts/site_buttons";
-  @import "abstracts/site_forms";
-  @import "abstracts/site_modals";
-  @import "components/copyright";
-  @import "components/recaptcha";
-  @import "components/contact-form";
-
-
+  @import "pages/splash";
 }

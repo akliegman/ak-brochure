@@ -1,0 +1,15 @@
+{% import 'macros/logo.html' as logo %}
+
+<div class="container-fluid">
+  <div class="logo">
+    <a href="/">
+      {{ logo.logo_svg('white', colors=meta.colors) }}
+    </a>
+  </div>
+  <nav class="pull-right">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>

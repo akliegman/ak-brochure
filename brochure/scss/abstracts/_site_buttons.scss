@@ -1,57 +1,20 @@
 .btn, .btn:focus, .btn:active, .btn:hover {
   outline: none;
+  letter-spacing: 1px;
+  @include transition(all ease-in .25s);
 }
 
 .btn-transparent {
-  @include button-variant($blue, transparent, $blue);
+  @include button-variant($red, transparent, $red);
 
   &:hover {
-    @include button-variant($blue, rgba(lighten($blue, 5%), 0.075), $blue);
+    @include button-variant(darken($red, 10%), rgba(lighten($red, 5%), 0.075), darken($red, 10%));
   }
   &:active, &:focus {
     @include box-shadow(none!important);
   }
 }
 
-.btn-transparent-white {
-  @include button-variant($white, transparent, $white);
-  @include box-shadow(none!important);
-
-  &:hover {
-    @include button-variant($white, rgba($green-light, 0.075), $white)
-  }
-}
-
-.btn:not(.btn-social) {
-  @include transition(all ease-in-out .25s);
-  position: relative;
-  font-family: $font-family-sans-serif;
-  i {
-    @include transition(all ease-in-out .25s);
-    @include scale(0);
-    left: 1em;
-    position: absolute;
-  }
-  &:hover {
-    @include box-shadow(0 1px 2px rgba(0,0,0,.2));
-
-    i {
-      @include scale(1);
-    }
-  }
-}
-
-.btn-social {
-  border-radius: 16px;
-  height: 32px;
-  line-height: 1;
-  font-size: 12px;
-  padding: 0;
-  width: 32px;
-  i {
-    height: 32px;
-    line-height: 32px;
-    padding: 0;
-    width: 32px;
-  }
+.btn-lg {
+  text-transform: uppercase;
 }

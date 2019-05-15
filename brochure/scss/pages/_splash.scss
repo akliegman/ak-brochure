@@ -1,74 +1,49 @@
+section.hero  {
+  z-index: 9;
 
-.content > .container {
-  min-height: calc(100vh - 2em);
-  padding-top: $body-padding;
-  padding-bottom: $body-padding;
-  @include animation-name(fade-in);
-  @include animation-fill-mode(both);
-  @include animation-duration(0.75s);
-  @include animation-iteration-count(1);
-  @include animation-timing-function(ease-in-out);
-  > .row {
-    @include animation-name(bounce-down);
-    @include animation-fill-mode(both);
-    @include animation-duration(1.25s);
-    @include animation-iteration-count(1);
-    @include animation-timing-function(ease-in-out);
+  .hero-banner {
+    height: 540px;
+    display: table;
+
+    .hero-headline {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .hero-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: lighten($gray, 10%);
+    height: 540px;
+    background-position: center;
   }
 }
 
-.splash-page-wrapper {
-  max-width: 36em;
-  margin: 0 auto;
+section.byline {
+  z-index: 8;
+  margin-top: -320px;
+  padding-top: 320px + ($grid-gutter-width * 1.25);
 }
 
-.pretitle {
-  font-weight: 200;
-  letter-spacing: 0.01em;
-  font-size: 1.8em;
-  color: $black;
-  &:before, &:after {
-    content: '';
-    height: 1px;
-    background: rgba($black, 0.2);
-    width: 2em;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0.5em;
+section {
+  .section-content-wrapper {
+    z-index: 1;
+  }
+  .section-img-wrapper {
+    z-index: 0;
+  }
+  .section-content-wrapper + .section-img-wrapper {
+    margin-left: -25%;
+  }
+  .section-img-wrapper + .section-content-wrapper {
+    margin-left: -25%;
+  }
+  .section-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: lighten($gray, 10%);
+    height: 700px;
+    background-position: center;
   }
 }
-.title {
-  font-size: 4.25em;
-  color: $black;
-  font-weight: 900;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  span {
-    display: inline-block;
-  }
-}
-
-.subtitle {
-  padding: 0 0 1em 0;
-  font-weight: 200;
-  letter-spacing: 0.01em;
-  font-size: 1.8em;
-  color: $black;
-
-  .typed-wrapper {
-    font-weight: 600;
-    color: $red;
-  }
-
-  .typed-cursor {
-    color: rgba($black, 0.4);
-    font-weight: 100;
-    vertical-align: text-top;
-  }
-}
-
-.cta-buttons .btn {
-  margin: 2em 0.25em;
-  width: 13em;
-}
-

@@ -2,10 +2,8 @@ $colors-list: (
   'white':        $white,
   'black':        $black,
   'red':          $red,
-  'purple':       $purple,
   'blue':         $blue,
-  'light-green':  $light-green,
-  'green':        $green
+  'gray':         $gray
 );
 
 @each $name, $color in $colors-list {
@@ -16,3 +14,52 @@ $colors-list: (
     color: $color;
   }
 }
+
+$margin-size: $grid-gutter-width / 4;
+
+$sizes: (
+  0:        0,
+  1:        $margin-size,
+  2:        $margin-size * 2,
+  3:        $margin-size * 3,
+  4:        $margin-size * 4,
+  5:        $margin-size * 5,
+  6:        $margin-size * 6,
+  7:        $margin-size * 7,
+  8:        $margin-size * 8
+);
+
+$sides: (top, bottom, left, right);
+
+@each $multiplier, $value in $sizes {
+  .m-x-#{$multiplier} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .m-y-#{$multiplier} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+  .m-all-#{$multiplier}, .m-#{$multiplier} {
+    margin: $value;
+  }
+  .p-x-#{$multiplier} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .p-y-#{$multiplier} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+  .p-all-#{$multiplier}, .p-#{$multiplier} {
+    padding: $value;
+  }
+  @each $side in $sides {
+    .m-#{$side}-#{$multiplier} {
+      margin-#{$side}: $value;
+    }
+    .p-#{$side}-#{$multiplier} {
+      padding-#{$side}: $value;
+    }
+  };
+};

@@ -1,5 +1,5 @@
 {% import 'macros/meta.html' as meta_macro %}
-{% import 'macros/contact-form.html' as contact_form %}
+
 
 <!doctype html>
 <!--[if lte IE 9 ]><html id="noodle-programs" class="ie-old no-js" lang="en"><![endif]-->
@@ -32,35 +32,43 @@
 
     {% block head_scripts %}
       <script src="https://www.google.com/recaptcha/api.js"></script>
-      <script>var elements = {{ elements|safe }};</script>
       {% assets filters="jsmin",
                 output="head_scripts.min.js",
                 'js/modernizr/modernizr-2.8.3.min.js',
                 'js/jquery/jquery-3.1.1.min.js',
                 'js/bootstrap/bootstrap.min.js',
                 'js/jquery/jquery.validate.js',
-                'js/base/recaptcha.js',
-                'js/base/contact-form.js' %}
+                'js/jquery/jquery.visible.js'
+                 %}
         <script src="{{ ASSET_URL }}"></script>
       {% endassets %}
     {% endblock head_scripts%}
   </head>
   <body class="ak-brochure {{ (theme ~ '-theme') }}">
-    <main class="main">
-      <section class="content">
-        {% block content %}
-        {% endblock content %}
-      </section>
-      {% include 'components/copyright.html' %}
+    <header>
+      {% include 'components/header.html' %}
+    </header>
+    <main>
+      {% block content %}
+      {% endblock content %}
     </main>
+    <aside>
+      {% include 'components/aside.html' %}
+    </aside>
+    <footer>
+      {% include 'components/footer.html' %}
+    </footer>
 
-    {{ contact_form.render_contact_form(id=elements.contact_form_id,
-                                    modal_id=elements.contact_modal_id,
-                                    recaptcha_site_key=meta.recaptcha_site_key,
-                                    debug=debug) }}
+    {% assets filters="jsmin",
+              output="body_scripts.min.js",
+              'js/base/recaptcha.js',
+              'js/base/fixed-header.js'
+              %}
+      <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
 
-    {% block body_scripts %}
-    {% endblock body_scripts %}
+    {% block scripts %}
+    {% endblock scripts %}
 
   </body>
 </html>
