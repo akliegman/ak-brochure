@@ -16,6 +16,7 @@
         contact_phone: {
           required: true,
           maxlength: 50
+
         },
         contact_email: {
           required: true,
