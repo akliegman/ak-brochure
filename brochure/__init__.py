@@ -16,8 +16,8 @@ app = Flask(__name__)
 app.config.from_object('brochure.config.Config')
 
 app.config['DEBUG'] = os.environ['DEBUG'] == 'True'
-app.config['MINIFY_PAGE'] = app.config['DEBUG'] is not True
-app.config['ASSETS_DEBUG'] = app.config['DEBUG'] is True
+app.config['MINIFY_PAGE'] = True
+app.config['ASSETS_DEBUG'] = False
 
 # Test styleless page
 app.config['SR_ONLY'] = False
