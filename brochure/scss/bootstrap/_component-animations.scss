@@ -29,9 +29,9 @@ tbody.collapse.in { display: table-row-group; }
 
 .collapsing {
   position: relative;
-  height: 0;
+  height: auto;
   overflow: hidden;
-  @include transition-property(height, visibility);
+  @include transition-property(all);
   @include transition-duration(.35s);
-  @include transition-timing-function(ease);
+  @include transition-timing-function(ease-in);
 }

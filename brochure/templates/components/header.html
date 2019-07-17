@@ -1,15 +1,22 @@
 {% import 'macros/logo.html' as logo %}
 
 <div class="container-fluid">
+  <h1 class="sr-only">Kliegman Design Co.</h1>
   <div class="logo">
     <a href="/">
       {{ logo.logo_svg('white', colors=meta.colors) }}
     </a>
   </div>
-  <nav class="pull-right">
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+  {# <a href="#" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#mainNav">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="navbar-toggler-icon"></span>
+  </a> #}
+  <nav class="collapse navbar-collapse pull-right" id="mainNav">
+    <ul class="nav navbar-nav">
+      {# <li><a href="/#about">About</a></li>
+      <li><a href="/#work">Work</a></li>
+      <li><a href="/#services">Services</a></li> #}
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
   </nav>
 </div>

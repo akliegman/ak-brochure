@@ -1,0 +1,50 @@
+p {
+  letter-spacing: 2px;
+  margin: 0 0 $line-height-computed;
+  .default-theme & {
+    letter-spacing: 0;
+    text-align: justify;
+  }
+}
+
+h1, .h1 {
+  font-family: $font-family-sans-serif;
+  letter-spacing: 7.25px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+h2, .h2 {
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: rgba($black, 0.2);
+}
+
+h4, .h4 {
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+h5, h6, .h5, .h6 {
+  margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+  display: inline-block;
+}
+
+.flash-yellow {
+  @include animation(flash-yellow 1s ease-in-out 3s 1 forwards);
+}
+
+
+.default-theme {
+  ul, ol {
+    li {
+      margin-bottom: $line-height-computed;
+      text-align: justify;
+    }
+  }
+}

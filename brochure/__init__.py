@@ -1,4 +1,4 @@
-"""Init application and set up all components and packages."""
+"""Init application and set up all components, configs, and packages."""
 import os
 import sys
 
@@ -14,14 +14,19 @@ from flask_sslify import SSLify
 app = Flask(__name__)
 
 app.config.from_object('brochure.config.Config')
+
 app.config['DEBUG'] = os.environ['DEBUG'] == 'True'
+app.config['MINIFY_PAGE'] = app.config['DEBUG'] is not True
+app.config['ASSETS_DEBUG'] = app.config['DEBUG'] is True
+
+# Test styleless page
+app.config['SR_ONLY'] = False
 
 app.secret_key = os.environ['CV_PASSWORD']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MINIFY_PAGE'] = os.environ['DEBUG'] != 'True'
-app.config['ASSETS_DEBUG'] = os.environ['DEBUG'] == 'True'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = '465'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = os.environ['GMAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = os.environ['GMAIL_PASSWORD']
@@ -45,4 +50,3 @@ from brochure.models.user import Users
 sys.path.append('brochure')
 
 from brochure.controllers import *
-

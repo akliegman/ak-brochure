@@ -1,4 +1,68 @@
-<div class="p-y-5 bg-color-blue">
+<div id="contact" class="p-y-5 bg-color-blue">
   <div class="container">
+
+    <div class="row">
+      <div class="col-sm-8 m-bottom-3">
+        {# <h2 class="color-gray-dark m-bottom-2">Contact</h2> #}
+        <p class="color-gray">
+          Kliegman Design Co. is currently accepting consulting
+          opportunities. Please fill out the form below!
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <form id="contact-form" method="POST" class="contact-form" autocomplete="off">
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <input type="text" class="form-control" name="contact_first_name" id="contact_first_name" {% if debug %}value="Adam"{% endif %} required>
+                <label class="control-label" for="contact_first_name">First Name</label>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="contact_last_name" id="contact_last_name" {% if debug %}value="Kliegman"{% endif %} required>
+                <label class="control-label" for="contact_last_name">Last Name</label>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="contact_email" id="contact_email" {% if debug %}value="kliegman14@gmail.com"{% endif %} required>
+                <label class="control-label" for="contact_email">Email</label>
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" name="contact_phone" id="contact_phone" {% if debug %}value="5164572014"{% endif %} required>
+                <label class="control-label" for="contact_phone">Phone</label>
+              </div>
+              <div class="form-group">
+                <select class="form-control" name="contact_reason" id="contact_reason" required>
+                  <option value selected disabled></option>
+                  <option value="consultation">Consultation Request</option>
+                  <option value="portfolio">Portfolio/Resume/CV Request</option>
+                  <option value="current_client">Current Client</option>
+                  <option value="inquiry">General Inquiry</option>
+                  <option value="hi" {% if debug %}selected{% endif %}>Just saying hi!</option>
+                </select>
+                <label class="control-label" for="contact_reason">Reason for contacting</label>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="form-group">
+                <textarea class="form-control" maxlength="2000" name="contact_message" id="contact_message" required>
+                  {%- if debug %}Hey bud, hope all is well.{% endif -%}
+                </textarea>
+                <label class="control-label" for="contact_message">Message</label>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-lg btn-gray-transparent pull-right">Submit</button>
+
+        </form>
+
+      </div>
+    </div>
+
   </div>
 </div>

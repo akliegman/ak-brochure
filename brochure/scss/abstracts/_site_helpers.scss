@@ -3,7 +3,9 @@ $colors-list: (
   'black':        $black,
   'red':          $red,
   'blue':         $blue,
-  'gray':         $gray
+  'gray':         $gray,
+  'gray-dark':    $gray-dark,
+  'yellow':       $yellow
 );
 
 @each $name, $color in $colors-list {
@@ -15,7 +17,7 @@ $colors-list: (
   }
 }
 
-$margin-size: $grid-gutter-width / 4;
+$margin-size: $grid-gutter-width / 2;
 
 $sizes: (
   0:        0,

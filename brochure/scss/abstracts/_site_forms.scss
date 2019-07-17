@@ -1,21 +1,70 @@
+.form-group {
+  position: relative;
+  margin-top: 4px;
+}
 .form-control {
-  padding: $padding-base-vertical $padding-small-horizontal $padding-base-vertical 2px;
+  padding: 10px $padding-small-horizontal 0 2px;
   border: 0;
   border-radius: 0;
-  border-bottom: 2px solid rgba($white, 0.5);
+  border-bottom: 1px solid $gray-dark;
+  margin-top: 4px;
   @include transition(all ease-in-out .25s);
-  @include box-shadow(none);
+  @include box-shadow(none!important);
   margin-bottom: $padding-base-vertical;
+  background-color: transparent!important;
+  + label.control-label {
+    color: $gray-dark;
+    font-weight: 500;
+    letter-spacing: 2px;
+    @include transition(all ease-in-out .25s);
+    position: absolute;
+    top: 14px;
+    left: 2px;
+    cursor: text;
+    pointer-events: none!important;
+  }
+
   &:focus, &:active {
     outline: 0;
+    border-color: $white !important;
     @include box-shadow(none!important);
-    border-color: $blue;
-    background-color: rgba($black, 0.1);
+  }
+  &:valid, &:focus, &.has-value, &:disabled {
+    + label.control-label {
+      font-size: 10px;
+      top: -4px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  &:disabled, &:disabled + label {
+    opacity: 0.1;
+    pointer-events: none;
   }
 }
 
+input:-internal-autofill-selected,
+input:-internal-autofill-selected:hover,
+input:-internal-autofill-selected:focus,
+input:-internal-autofill-selected:active,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0px 1000px $blue inset !important;
+  box-shadow: 0 0 0px 1000px $blue inset !important;
+  color: $white!important;
+  -webkit-text-fill-color: $white!important;
+  background-color: $blue !important;
+  background-position: 0 0!important;
+}
+
 select.form-control {
+  appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
   position: relative;
   border-radius: 0;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path fill="none" stroke="%23dedede" stroke-miterlimit="10" d="M1 3l4 4 4-4"/></svg>');
@@ -25,20 +74,131 @@ select.form-control {
   padding-top: 0;
   padding-bottom: 0;
   line-height: 2;
+}
 
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 $white;
+}
+
+option:not(:checked) {
+  color: black;
 }
 
 textarea.form-control {
-  border: 2px solid rgba($white, 0.5);
+  border: 1px solid $gray-dark;
   padding-left: $padding-small-horizontal;
+  margin-top: 46px;
+  height: 284px;
+  padding: 16px 32px 16px 16px;
+  resize: none!important;
+
+  + label.control-label {
+    left: 0;
+    top: -30px;
+  }
+
+  &:valid, &:focus, &:disabled {
+    + label.control-label {
+      top: -30px;
+      left: 0;
+      font-size: inherit;
+      letter-spacing: 2px;
+    }
+  }
 }
 
-button[type=submit].btn {
-  width: 100%;
-  margin-top: $padding-base-vertical;
+.textarea-counter {
+  color: $gray-dark;
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  height: 12px;
+  pointer-events: none;
+  font-size: 10px;
+  display: inline-block;
+  text-align: center;
+  padding-left: 2px;
+  padding-right: 2px;
+  line-height: 12px;
+  border-radius: 2px;
 
+  &[data-value="0"] {
+    color: $white;
+    background: $red;
+  }
 }
 
-.has-error .form-control {
-  border-color: $red;
+
+.has-success .form-control, input:valid, select:valid, input:disabled {
+  border-color: $white;
+    &:focus, &:active {
+    outline: 0;
+    border-color: $white;
+    @include box-shadow(none!important);
+  }
+}
+.error.help-block {
+  display: none;
+}
+.has-error {
+  .form-control {
+    border-color: $gray-dark;
+    &:focus, &:active {
+      border-color: $white;
+    }
+  }
+  .help-block.error {
+    position: absolute;
+    background: rgba(lighten($red, 10%), 1);
+    opacity: 0;
+    display: inline-block;
+    color: $white;
+    font-size: 10px;
+    line-height: 1;
+    width: 100%;
+    padding: 3px 2px;
+    bottom: -25px;
+    z-index: 9099;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    @include animation(fade-in 1s ease-in-out 3s 1 forwards);
+  }
+}
+
+
+form {
+  position: relative;
+  &.valid-contact_message {
+    button[type=submit] {
+      border-color: $white;
+      color: $white;
+    }
+  }
+}
+
+button[type=submit] {
+  &:disabled {
+    opacity: 0.1;
+    pointer-events: none;
+  }
+}
+
+
+.thank-you-message {
+  position: absolute;
+  text-transform: uppercase;
+  left: 0;
+  right: 0;
+  top: 128px;
+  bottom: 0;
+  opacity: 0;
+  text-align: center;
+  @include animation(fade-in 1s ease-in-out 1s 1 forwards);
+
+  span {
+    display: inline-block;
+    color: $white;
+    margin: auto;
+    font-family: $font-family-sans-serif;
+  }
 }

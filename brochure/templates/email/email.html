@@ -3,9 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width">
   </head>
-  <body class="" style="background-color: #ffffff; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
+  <body class="" style="background-color: #ffffff; font-family: Arial, sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
     <p>Hello Adam,</p>
-    <p>Just sending some data over for you. Got a contact!</p>
-    <p>{{ data.contact_name }}</p>
+    <p>Someone reached out to you with the following information:</p>
+    <br><br>
+    <p><strong>Name:</strong> {{ data.contact_first_name }} {{ data.contact_last_name }}</p>
+    <p><strong>Email:</strong> {{ data.contact_email }}</p>
+    <p><strong>Phone:</strong> {{ data.contact_phone }}</p>
+    <p><strong>Reason:</strong> {{ data.contact_reason }}</p>
+    <br>
+    <p><strong>Message:</strong></p>
+    <p>
+      {{ data.contact_message }}
+    </p>
+    <br><br><br>
+    <p>Thanks!</p>
   </body>
 </html>

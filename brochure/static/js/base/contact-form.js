@@ -2,11 +2,18 @@
 
   var contact_form = {
     configs: {
-      form_element: '#' + elements.contact_form_id,
-      modal_element: '#' + elements.contact_modal_id,
+      form_element: '#contact-form',
       ajax_url: '/ajax/contact',
       validation_rules: {
-        contact_name: {
+        contact_first_name: {
+          required: true,
+          maxlength: 50
+        },
+        contact_last_name: {
+          required: true,
+          maxlength: 50
+        },
+        contact_phone: {
           required: true,
           maxlength: 50
         },
@@ -19,11 +26,15 @@
         },
         contact_message: {
           required: true,
-          minlength: 5,
-          maxlength: 1000
+          minlength: 1,
+          maxlength: 2000
         },
         messages: {
-          contact_name: {
+          contact_first_name: {
+            required: 'Please enter your name.',
+            maxlength: 'Your name is too damn long.'
+          },
+          contact_last_name: {
             required: 'Please enter your name.',
             maxlength: 'Your name is too damn long.'
           },
@@ -48,25 +59,31 @@
     init: function() {
       this.cache_dom();
       this.validate_and_submit_form();
+
     },
     cache_dom: function() {
       this.$contact_form = $(this.configs.form_element);
-      this.$modal_element = $(this.configs.modal_element);
       this.$contact_form_submit_btn = this.$contact_form.find('button[type=submit]');
+      this.$message_field = this.$contact_form.find('[name=contact_message]');
     },
     validate_and_submit_form: function() {
-
       this.$contact_form.validate({
         rules: this.configs.validation_rules,
-        errorElement: "em",
+        onfocusin: function(element) {
+          setTimeout(function(){
+            $(element).valid();
+          }, 1000);
+        },
+        success: "valid",
+        errorElement: "span",
         errorPlacement: function(error, element) {
           error.addClass('help-block');
           element.closest('.form-group').addClass('has-feedback');
 
           if (element.attr('type') == 'checkbox' ) {
-            error.insertAfter(element.parent('label'));
+            error.insertBefore(element.parent('label'));
           } else {
-            error.insertAfter(element);
+            error.insertBefore(element);
           }
 
         },
@@ -74,14 +91,25 @@
         },
         highlight: function ( element, errorClass, validClass ) {
           $(element).closest( ".form-group" ).addClass("has-error").removeClass("has-success");
+          $(element).closest("form").removeClass("valid-" + $(element).attr("name"));
         },
         unhighlight: function ( element, errorClass, validClass ) {
-          $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+          $(element).closest(".form-group").addClass( "has-success" ).removeClass( "has-error" );
+          $(element).closest("form").addClass("valid-" + $(element).attr("name"));
         },
         submitHandler: function(form) {
           var $form = $(form),
               $submit_btn = $form.find('button[type=submit]'),
               form_data = $form.serialize();
+
+          var $all_fields = $form.find('input').add($form.find('select')).add($form.find('textarea')).add($submit_btn);
+
+          $all_fields.attr('disabled', true);
+
+          var $thank_you_message = $('<div></div>');
+
+          $thank_you_message.addClass('thank-you-message')
+                            .html('<span class="h2">Thank you!</span>');
 
           $submit_btn.attr('disabled', true);
           $.ajax({
@@ -89,16 +117,46 @@
             data: form_data,
             type: 'POST',
             success: function(result) {
-              console.log(result);
-              $submit_btn.removeAttr('disabled');
+              $('html').animate({
+                scrollTop: $form.offset().top - 10
+              });
+              $form.after($thank_you_message);
             },
             error: function() {
-              $submit_btn.removeAttr('disabled');
+              $all_fields.removeAttr('disabled');
+              console.log('There was an error.');
             }
           })
         }
       });
 
+      this.$contact_form.find('.form-control').on('input change', function() {
+        console.log($(this).val().length);
+
+        if ($(this).val().length > 0) {
+          $(this).addClass('has-value')
+        } else {
+          $(this).removeClass('has-value')
+        }
+      });
+
+      if ($("textarea.form-control").attr("maxlength") !== undefined ) {
+        var $counter = $('<span>')
+                        .addClass('textarea-counter')
+                        .html($("textarea.form-control").attr("maxlength"))
+                        .attr("for", $("textarea.form-control").attr("id"));
+        $counter.insertAfter($("textarea.form-control + label"));
+      }
+
+      $('textarea.form-control').on("input", function(e) {
+        var name = $(this).attr('name'),
+            maxlength = $(this).attr('maxlength'),
+            length = $(this).val().length;
+
+        var $counter = $('.textarea-counter[for="' + $(this).attr("id") + '"]');
+
+        $counter.html(maxlength - length).attr("data-value", maxlength - length);
+      });
     }
   };
 

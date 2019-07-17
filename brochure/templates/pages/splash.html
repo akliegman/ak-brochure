@@ -7,33 +7,52 @@
 <section class="hero">
   <div class="container">
     <div class="row">
-      <div class="hero-banner col-sm-12 text-center">
-        <h1 class="hero-headline">Let's get down to brass tacks.</h1>
+      <div class="hero-banner col-sm-12 color-">
+        <h1 class="hero-headline">
+          Creating the right products the right way.
+        </h1>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-4 hero-block">
-        <h4 class="color-blue">Ask.</h4>
-        <p class="color-blue m-bottom-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper nibh et
-        aliquam sagittis. Mauris et efficitur lacus. </p>
-        <div role="img" class="hero-img" style="background-image:url({{ url_for('static', filename='img/hero-block-1.jpg') }});"></div>
+        <h4 class="">Data-driven <span>strategy</span></h4>
+        <p>
+          Good product development today means studying key performance metrics and then applying the
+          scientific method to unpack patterns and build insightful roadmaps.
+        </p>
+        <div role="img"
+             class="hero-img"
+             style="background-image:url({{ url_for('static', filename='img/hero-block-2.jpg') }});">
+        </div>
       </div>
 
       <div class="col-sm-4 hero-block">
-        <h4 class="color-blue">Understand.</h4>
-        <p class="color-blue m-bottom-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper nibh et
-        aliquam sagittis. Mauris et efficitur lacus. </p>
-        <div role="img" class="hero-img" style="background-image:url({{ url_for('static', filename='img/hero-block-2.jpg') }});"></div>
+        <h4 class="">User-centered <span>design</span></h4>
+        <p>
+          Elegant designs take into account human factors and corresponding user behaviors to
+          optimize products around friendly experiences and accessible interfaces.
+        </p>
+        <div role="img"
+             class="hero-img"
+             style="background-image:url({{ url_for('static', filename='img/hero-block-1.jpg') }});">
+        </div>
       </div>
 
       <div class="col-sm-4 hero-block">
-        <h4 class="color-blue">Craft.</h4>
-        <p class="color-blue m-bottom-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper nibh et
-        aliquam sagittis. Mauris et efficitur lacus. </p>
-        <div role="img" class="hero-img" style="background-image:url({{ url_for('static', filename='img/hero-block-3.jpg') }});"></div>
+        <h4 class="">Careful <span>craftsmanship</span></h4>
+        <p>
+          Using modular development practices with the latest coding frameworks to maintain
+          readability, extensibility, and quicker implementations down the line.
+
+        </p>
+        <div role="img"
+             class="hero-img"
+             style="background-image:url({{ url_for('static', filename='img/hero-block-3.jpg') }});">
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -42,24 +61,35 @@
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1 text-center">
         <h4>
-          The Kliegman Design Company lorum ipsum dolor sit amet god damnit I can never write copy.
+          Kliegman Design Company provides expert product consultancy,
+          UX/UI design, and carefully written frontend development to mission-driven companies
+          with ambitious expectations. Our focus is on maximizing performance objectives through a combination of
+          data innovation, user-centered design, and down-to-brass-tacks common sense. To request the Kliegman Design Co.
+          portfolio or learn more, feel free to contact us!
         </h4>
-        <a href="#" class="btn btn-transparent btn-cta btn-lg m-top-2">Contact</a>
+        <a href="/#contact"
+           class="scroll-to btn btn-transparent btn-cta btn-lg m-top-2">
+          Contact
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="about" class="about bg-color-gray p-y-5">
+<section id="about" class="about bg-color-gray p-bottom-5">
   <div class="container">
     <div class="row">
       <div class="col-sm-6 section-content-wrapper">
-        <h2 class="m-0">About</h2>
-        <div class="bg-color-blue p-all-2 m-top-8">
+        {# <h2 class="m-0">About</h2> #}
+        <div class="bg-color-blue p-all-2">
           <h4 class="color-white">I'm Adam Kliegman</h4>
           <p class="color-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper nibh et
-            aliquam sagittis. Mauris et efficitur lacus.
+            I'm a dedicated product manager driven by an obsessive desire to create world-class online
+            experiences. I hail from New York with a degree in Psychology from the University of Wisconsin-Madison,
+            and aim to combine my interests in human behavior with my passion for design and coding to
+            visualize and develop thoughtful experiences. I have spent the bulk of my career doing B2C work in the EdTech and eCommerce fields.
+            When not working, you can find me walking around NYC drinking a Dunkin iced coffee and being sad about imminent failures of Knicks.
+
           </p>
         </div>
       </div>
@@ -70,13 +100,11 @@
   </div>
 </section>
 
+{#
 <section id="work" class="work bg-color-gray p-y-5">
   <div class="container">
     <div class="row">
-      <div class="col-sm-9 section-img-wrapper">
-        <div role="img" class="section-img" style="background-image:url({{ url_for('static', filename='img/section-work.jpg') }});"></div>
-      </div>
-      <div class="col-sm-6 section-content-wrapper">
+      <div class="col-sm-6 section-content-wrapper text-right">
         <h2 class="m-0 text-right">Work</h2>
         <div class="bg-color-blue p-all-2 m-top-8">
           <h4 class="color-white">I'm Adam Kliegman</h4>
@@ -86,20 +114,16 @@
           </p>
         </div>
       </div>
+      <div class="col-sm-9 section-img-wrapper">
+        <div role="img" class="section-img" style="background-image:url({{ url_for('static', filename='img/section-work.jpg') }});"></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="services" class="services p-y-5">
 </section>
+#}
 
 {% endblock content %}
 
-{% block body_scripts %}
-  {% assets filters="jsmin",
-            output="splash_page.min.js",
-            'js/typed/typed.min.js',
-            'js/pages/splash.js' %}
-      <script src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endblock body_scripts %}

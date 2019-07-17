@@ -1,5 +1,5 @@
 .btn, .btn:focus, .btn:active, .btn:hover {
-  outline: none;
+  outline: none!important;
   letter-spacing: 1px;
   @include transition(all ease-in .25s);
 }
@@ -8,7 +8,18 @@
   @include button-variant($red, transparent, $red);
 
   &:hover {
-    @include button-variant(darken($red, 10%), rgba(lighten($red, 5%), 0.075), darken($red, 10%));
+    @include button-variant($white, $red, $red);
+  }
+  &:active, &:focus {
+    @include box-shadow(none!important);
+  }
+}
+
+.btn-gray-transparent {
+  @include button-variant($gray-dark, transparent, $gray-dark);
+
+  &:hover {
+    @include button-variant($white, $red, $red);
   }
   &:active, &:focus {
     @include box-shadow(none!important);

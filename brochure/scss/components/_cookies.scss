@@ -1,0 +1,51 @@
+.cookies {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1099;
+  background: rgba(#111, 0.8);
+  &:hover {
+    background: #111;
+  }
+  .col-sm-12 {
+    position: relative;
+  }
+
+  p {
+    font-size: 14px;
+    letter-spacing: 0;
+    font-weight: 300;
+    line-height: 1.2;
+    display: inline-block;
+  }
+  a {
+    color: $white!important;
+    text-decoration: underline;
+  }
+
+  button.cookies-close {
+    position: absolute;
+    right: $grid-gutter-width / 2;
+    bottom: 20px;
+    top: 20px;
+    width: 60px;
+    font-size: 14px;
+    line-height: 14px;
+    vertical-align: middle;
+    min-height: 15px;
+    padding: 0;
+    border: 1px solid rgba($white, 0.5);
+    background: transparent;
+    -webkit-appearance: none;
+    box-shadow: none;
+    color: rgba($white, 0.75);
+    outline: none;
+    @include transition(all ease-in .25s);
+    &:hover {
+      border-color: $white;
+      background: $white;
+      color: #111;
+    }
+  }
+}

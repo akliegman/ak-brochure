@@ -1,24 +1,126 @@
-$header-gutter:   $grid-gutter-width / 2;
+$header-gutter:   $grid-gutter-width;
 
 & {
-  padding-top: $header-gutter * 2;
+  padding-top: $header-gutter / 2;
+  padding-bottom: $header-gutter / 2;
   background: $white;
-  padding-bottom: $header-gutter / 4;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 99;
   @include transition(all ease-in .25s);
 }
 
+.navbar-collapse {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: ($header-gutter * 2.5) 0;
+  border: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $blue;
+
+  .navbar-nav {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  a {
+    text-align: center;
+    float: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 24px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: calc((100vh - #{($header-gutter * 6)})/ 4);
+    line-height: calc((100vh - #{($header-gutter * 6)})/ 4);
+    display: block;
+    @include transition(all ease-in .25s);
+    color: $white;
+    &:hover {
+      background: darken($blue, 10%);
+    }
+
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  & {
+    padding-top: $header-gutter * 2;
+    position: fixed;
+
+    .navbar-collapse {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      padding: 0;
+      background: transparent;
+      height: auto;
+      width: auto;
+      a {
+        height: $header-gutter * 1.5;
+        line-height: 1;
+        display: inline-block;
+        padding: 40px 20px 10px;
+        color: $blue;
+        font-size: 16px;
+
+        &:hover {
+          color: $red;
+          background: transparent;
+        }
+        &:active, &.active-s, &:focus {
+          color: lighten($red, 15%);
+          font-weight: 600;
+          background: transparent;
+          outline: 0;
+          @include transition(all ease-in .25s);
+        }
+
+        &.inactive-s {
+          color: darken($gray, 12.5%);
+          background: tranparent;
+          @include transition(all ease-in .25s);
+          &:hover {
+            color: $red;
+          }
+
+        }
+      }
+    }
+  }
+  &.scrolled-state {
+    padding-top: $header-gutter / 2;
+    box-shadow: $box-shadow;
+    position: fixed;
+
+    .navbar-collapse  {
+      a {
+        padding: 25px 20px 20px;
+      }
+    }
+  }
+}
+
 .logo {
   background: $blue;
   height: $header-gutter * 1.5;
   display: inline-block;
-  padding: 5px 5px 5px $header-gutter;
-  margin-left: $header-gutter * -1;
+  padding: 5px 5px 5px #{$header-gutter / 2};
+  margin-left: ($header-gutter * -.5) - 1;
   vertical-align: bottom;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
   @include transition(all ease-in .25s);
+  @include animation(slide-left .45s ease-in-out 2.25s 1 forwards);
+
   svg {
     width: auto;
     height: 100%;
@@ -27,48 +129,34 @@ $header-gutter:   $grid-gutter-width / 2;
   &:hover {
     background: darken($blue, 5%);
   }
-}
 
-nav {
-  margin-right: ($header-gutter * -1);
-  a {
-    text-align: center;
-    width: 140px;
-    height: $header-gutter * 1.5;
-    line-height: 1;
-    display: inline-block;
-    float: left;
-    padding: 40px 0 10px;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    @include transition(all ease-in .25s);
-
-    &:hover {
-      color: darken($blue, 20%);
-      background-color: lighten($gray, 7.5%);
-    }
-
-    &:active, &.active {
-      color: lighten($blue, 15%);
-      font-weight: 600;
-      background: transparent;
-    }
-
-    &.inactive {
-      color: darken($gray, 12.5%);
-      background: tranparent;
-    }
+  @media (min-width: $screen-sm-min) {
+    padding: 5px 5px 5px #{$header-gutter * 1.5};
   }
 }
 
-&.scrolled-state {
+.navbar-toggle {
+  margin: 0;
   padding: 0;
-  box-shadow: $box-shadow;
-
-  nav {
-    a {
-      padding: 30px 0 20px;
-    }
-  }
+  @include transition(all ease-in .25s);
+  z-index: 99;
 }
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: $header-gutter;
+  height: $header-gutter * 1.5;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 66.66666% 66.66666%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='%23FFFFFF'%3E%3Cpath d='M2.865764 24.078864L24.0780569 2.8665711l3.054672 3.054672L5.920436 27.133536z'/%3E%3Cpath d='M5.920636 2.865964l21.213 21.213-3.054672 3.054672-21.213-21.213z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.collapsed .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='%23365060'%3E%3Cpath d='M0 4.595h30v4.32H0zM0 12.84h30v4.32H0zM0 21.086h30v4.32H0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+
+
