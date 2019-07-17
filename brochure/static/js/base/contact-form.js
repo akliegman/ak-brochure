@@ -132,7 +132,6 @@
       });
 
       this.$contact_form.find('.form-control').on('input change', function() {
-        console.log($(this).val().length);
 
         if ($(this).val().length > 0) {
           $(this).addClass('has-value')
