@@ -51,7 +51,7 @@
        var element = $(this).attr("href").substr(1);
        var position = $(element).offset().top - 40;
 
-       $('html').scrollTop(position);
+       $('html, body').scrollTop(position);
      }
     });
   });
@@ -61,7 +61,7 @@
       var target = $(this).attr('href').substr(1);
       e.preventDefault();
       $('.navbar-collapse').collapse('hide');
-      $('html').animate({
+      $('html, body').animate({
         scrollTop: $(target).offset().top - 40
       });
     }
